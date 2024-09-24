@@ -1,0 +1,40 @@
+.btn-category{
+    display:'block';
+    outline:none;  
+    border:none;
+     color:black;
+      position:absolute;
+      top:250px;
+      left: 90px;
+      width:100px;
+      z-index:10;
+      text-decoration: none;
+      opacity: 0;
+}
+
+.categoryDiv{
+    position:relative;
+    height: 345px;
+    width:60%;
+    border-radius:10px;
+    object-fit: cover;
+    &:hover{
+        opacity: 10;
+        background-color: black;
+
+        .img-category{
+            opacity: 10;
+        }
+        .btn-category{
+            opacity: 1;
+        }
+    }
+}
+
+.img-category{
+    // margin:5px;
+    height: 100%;
+  width:100%;
+//   border-radius:10px;
+    object-fit:cover;
+}
