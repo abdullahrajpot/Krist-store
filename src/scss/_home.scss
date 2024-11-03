@@ -1,0 +1,101 @@
+.hero {
+  background-image: url('../data/assets/images/main.jpg'); /* Adjust this path */
+  height: 100vh; /* Full height */
+  background-size: cover; /* Cover the entire area */
+  background-position: center; /* Center the image */
+  display: flex; /* Centering content */
+  justify-content: center; /* Centering content */
+  align-items: center; /* Centering content */
+  color: white;
+  padding: 20px; /* Padding to avoid content touching edges */
+  animation: fadeIn 1s; /* Fade-in animation */
+}
+
+#hero-title {
+  font-weight: bold;
+  font-size: 35px;
+  color: yellow;
+  animation: slideIn 1s; /* Slide-in animation */
+}
+
+#hero-text {
+  width: 100%; /* Make text width full for small screens */
+  max-width: 55%; /* Restrict maximum width on larger screens */
+  display: block;
+  margin: auto;
+  color: white;
+}
+
+.order-now {
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  margin-top: 25px;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: 30px; /* Smaller font size for medium screens */
+  }
+
+  .hero-text {
+    font-size: 16px; /* Adjust text size for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto; /* Allow height to adjust on smaller screens */
+    padding: 20px 10px; /* Reduce padding for small screens */
+  }
+
+  .hero-title {
+    font-size: 24px; /* Smaller font size for titles on small screens */
+    font-weight: 600; /* Reduce font weight on small screens */
+  }
+
+  .hero-text {
+    font-size: 14px; /* Smaller font size for text on small screens */
+    max-width: 90%; /* Allow more width on small screens */
+  }
+
+  .order-now {
+    width: 100%; /* Allow button to stretch on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 20px; /* Even smaller font size for very small screens */
+  }
+
+  .hero-text {
+    font-size: 12px; /* Further reduce font size for very small screens */
+  }
+
+  .order-now {
+    height: 40px; /* Adjust button height for small screens */
+  }
+}

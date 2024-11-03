@@ -1,21 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import firebase from 'firebase/compat/app';
-import App from './App';
 import './config/global';
+
+import App from './App';
 
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import AuthContextProvider from './Contexts/AuthContext';
+import ProductContextProvider from './Contexts/ProductContext';
+import FilterContextProvider from './Contexts/FilterContext';
+import CartContextProvider from './Contexts/CartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-  <BrowserRouter>
-  <AuthContextProvider>
-  <App />
-  </AuthContextProvider>
-  </BrowserRouter>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ProductContextProvider>
+          <FilterContextProvider>
+            <CartContextProvider>
+              <App />
+            </CartContextProvider>
+          </FilterContextProvider>
+        </ProductContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

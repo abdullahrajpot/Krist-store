@@ -1,3 +1,20 @@
 @import './scss/bootstrap';
 @import './scss/dashboard';
+@import './scss/products';
+@import './scss/auth';
+@import './scss/footer';
+@import './scss/screenLoader';
+@import './scss/home';
 
+
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+}
+
+main {
+    flex: 1 0 auto;
+}

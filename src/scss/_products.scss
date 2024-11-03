@@ -1,0 +1,38 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures consistent spacing */
+  height: 100%; /* Make cards occupy full height */
+  border: 1px solid #ddd; /* Optional: Add a border */
+  border-radius: 8px; /* Optional: Rounded corners */
+  overflow: hidden; /* Prevents overflow of image */
+  position: relative; /* Required for absolute positioning of the button */
+}
+
+.image-container {
+  position: relative; /* Required for positioning button */
+  overflow: hidden; /* Prevents overflow of image */
+}
+
+.product-img {
+  width: 100%; /* Ensures the image fills the container */
+  height: 200px; /* Fixed height to maintain equal sizes */
+  display: block; /* Ensures no spacing issues */
+  object-fit: cover; /* Ensures images cover the area */
+}
+
+.cart-button {
+  position: absolute;
+  left: 50%; /* Center horizontally */
+  top: 50%; /* Center vertically */
+  transform: translate(-50%, -50%); /* Adjust position to center */
+  border: none;
+  color: red; /* Adjust color to match theme */
+  font-size: 20px; /* Size of the icon */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+.product-card:hover .cart-button {
+  opacity: 1; /* Show button on hover */
+}

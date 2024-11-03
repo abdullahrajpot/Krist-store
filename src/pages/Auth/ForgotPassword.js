@@ -1,10 +1,10 @@
-import { Checkbox, Col, Image, Input, Row, Typography, Button, Form } from 'antd';
+import { Col, Image, Input, Row, Typography, Button, Form } from 'antd';
 import React, { useState } from 'react';
 import forgot_img from '../../data/assets/images/forgot_img.png';
-import { Link, useNavigate } from 'react-router-dom';
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
-import { auth, firestore } from '../../config/firebase';
+import { useNavigate } from 'react-router-dom';
+import { sendPasswordResetEmail } from 'firebase/auth';
+
+import { auth } from '../../config/firebase';
 import {LeftOutlined} from '@ant-design/icons'
 
 
@@ -38,8 +38,6 @@ export default function ForgotPassword() {
         navigate('/auth/login')
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
         toastify("Error while resetting passoword.", "error");
 
       });

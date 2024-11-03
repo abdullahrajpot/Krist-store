@@ -4,7 +4,6 @@ import login_img from '../../data/assets/images/login.png';
 import hello_img from '../../data/assets/images/hello.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 import { auth, firestore } from '../../config/firebase';
 import { useAuthContext } from '../../Contexts/AuthContext';
 
@@ -13,17 +12,17 @@ export default function Login() {
 
     const { Title, Text } = Typography;
     const { toastify } = window;
-    const initialstatte = { email: '', password: '' }
+    const initialstate = { email: '', password: '' }
 
 
-    const { dispatch } = useAuthContext()
-    const [signin, setSignIn] = useState(initialstatte)
+    const [signin, setSignIn] = useState(initialstate)
+    const { dispatch, state} = useAuthContext()
     let navigate = useNavigate();
 
     const handlechange = (e) => setSignIn(s => ({ ...s, [e.target.name]: e.target.value }))
 
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         let { email, password } = signin
@@ -36,48 +35,25 @@ export default function Login() {
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
-                readUserProfile(user)
-                // ...
+                dispatch({type: "SET_LOGGED_IN", payload:{user: user} } )
+                console.log("is authenticated", state.isAuthenticated)
+                navigate('/')
             })
             .catch((error) => {
                 const errorCode = error.code;
-                let errorMessage = error.message;
                 switch (errorCode) {
                     case 'auth/email-already-in-use': return toastify("An account with this email already exists. Please log in.", "error");
                     case 'auth/invalid-email': return toastify("The email address is not valid.", "error");
                     case 'auth/operation-not-allowed': return toastify("Email/password accounts are not enabled. Please contact support.", "error");
                     case 'auth/weak-password': return toastify("The password is too weak. Please choose a stronger password.", "error");
-                    default: errorMessage = "An error occurred during registration. Please try again.";
+                    default: return toastify("An error occurred during registration. Please try again.", "error");
                 }
             });
     }
+    
 
 
-    const readUserProfile = async (userCredential) => {
-        const { uid } = userCredential; // Correctly access user from userCredential
-
-        try {
-            const docRef = doc(firestore, "users", uid );
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                console.log("Document data:", docSnap.data());
-                let user = docSnap.data()
-                dispatch({ type: "USER_LOGGED_IN", payload: { user } }); // Dispatch action to context
-                toastify("User Logged in successfully", "success");
-                navigate("/");
-
-            } else {
-                // docSnap.data() will be undefined in this case
-                console.log("No such document!");
-                toastify("An error occurred while signing in user.", "error");
-
-            }
-        } catch (e) {
-            console.error("Error adding document: ", e);
-            toastify("An error occurred while signing in user.", "error");
-        }
-    }
+   
 
     return (
         <>

@@ -1,0 +1,21 @@
+.link{
+    text-decoration: none;
+    color: white;
+
+    &:hover{
+        color: #0185c3;
+    }
+}
+
+.social{
+
+    background-color:black;
+    border-color:black ;
+    color: white;
+    
+
+    &:hover{
+        background-color: #0185c3;
+    }
+
+}

@@ -24,7 +24,7 @@ export default function Register() {
     const handleSubmit = e => {
         e.preventDefault();
 
-        let { firstname, lastname, email, password } = signup
+        let { firstname, email, password } = signup
 
         if (firstname.length < 3) return toastify("Enter correct first name ", "error")
         if (!window.isemail(email)) return toastify("Enter valid email address", "error")
@@ -62,12 +62,12 @@ export default function Register() {
             fullName: firstname + " " + lastname, 
             firstname, 
             lastname, 
-            role: ["Admin"] 
+            role: "customer"
         };
     
         try {
-            await setDoc(doc(firestore, "users", uid), user);
-            dispatch({ type: "USER_LOGGED_IN", payload: { user } }); // Dispatch action to context
+            await setDoc(doc(firestore, "users", user.uid), user);
+            dispatch({ type: "SET_LOGGED_IN", payload: { user } }); // Dispatch action to context
             toastify("User Registered successfully", "success");
             navigate("/"); // Navigate to home page after registration
         } catch (e) {
